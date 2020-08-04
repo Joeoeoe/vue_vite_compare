@@ -1,7 +1,7 @@
 # 记录
 
 ## 8.4
-对比vite与cli打包后的区别
+对比vite与cli打包后的区别，基本了解如何解析文件。将script标签抽出来，template内容则使用render函数
 
 
 # 参考学习文章
