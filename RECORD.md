@@ -11,3 +11,4 @@
 2. [Vite 原理浅析](https://molunerfinn.com/learn-vite/)
 3. [讲真的，通过这个例子，我知道 vite 为什么比 webpack 快了](https://juejin.im/post/6854573217333149703)
 4. 等看尤大评论，自己分析
+5. [替代 webpack？带你了解 snowpack 原理，你还学得动么](https://www.zhihu.com/search?type=content&q=snowpack%20vite)
