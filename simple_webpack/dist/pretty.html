@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    "\"use strict\";
+    var _moduleA = _interopRequireDefault(require(\"./moduleA.js\"));
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { \"default\": obj }; }
+    console.log('myWebpack!');
+    (0, _moduleA[\"default\"])();"
+    <script>
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports["default"] = _default;
+        function _default() { console.log("I am moduleA"); }
+    </script>
+
+
+    <script>
+
+    </script>
+</body>
+
+</html>

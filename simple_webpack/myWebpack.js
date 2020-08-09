@@ -25,7 +25,7 @@ module.exports = class Webpack {
             }
         }
 
-        // 数组转对象
+        // 数组转对象，使用entryFile作为key
         const obj = {};
         this.modulesArr.forEach((item) => {
             obj[item.entryFile] = {
@@ -38,15 +38,13 @@ module.exports = class Webpack {
     }
 
     build(entryFile){
-        const conts = fs.readFileSync(entryFile, 'utf8');
+        const conts = fs.readFileSync(entryFile, 'utf8');// 读取entryFile文件内容
         const ast = parser.parse(conts, { // 解析为AST
             sourceType: 'module'
         });
-        console.log(ast);
 
-        const dependencies = {};
-        // 遍历AST  
-        // TODO 不懂，盲猜是设置路径
+        const dependencies = {}; // 此模块的依赖
+        // 遍历AST，此模块依赖的路径
         traverse(ast, {
             ImportDeclaration({node}){
                 const newPath = './' + path.join(path.dirname(entryFile), node.source.value);
@@ -54,10 +52,11 @@ module.exports = class Webpack {
             }
         });
 
+        // 编码code
         const {code} = transformFromAst(ast, null, {
             presets: ['@babel/preset-env']
         });
-
+        console.log(dependencies);
         return{
             entryFile,
             dependencies,
@@ -67,8 +66,11 @@ module.exports = class Webpack {
 
     emitFile(code){
         const filePath = path.join( this.output.path, this.output.filename);
-        console.log(__dirname);
         const newCode = JSON.stringify(code);
+        /**
+         * 自执行函数，入口文件开始，递归执行相关依赖
+         * 其中，require函数为模拟node环境中的require，通过eval输入字符串执行函数。
+         */
         const bundle = `(function(modules){
             function require(moduleId){
                 function localRequire(relativePath){
@@ -83,7 +85,6 @@ module.exports = class Webpack {
             }
             require('${this.entry}')
         })(${newCode})`;
-        console.log(bundle);
         fs.writeFileSync(filePath, bundle, 'utf-8');
     }
 }

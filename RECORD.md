@@ -12,6 +12,11 @@
 # 8.8
 简单webpack完成，明天结合文章进一步分析理解，然后理解HMR。接下来继续Vite
 
+# 8.9
+webpack打包原理为自身模拟一个require函数，通过eval函数执行各个文件的字符串代码，如此便相当于把多个文件集成到一个js文件中（eval执行的js字符串可视为一个文件）。
+
+
+
 # 参考学习文章
 1. [前端新工具--vite从入门到实战（一）](https://zhuanlan.zhihu.com/p/149033579)
 2. [Vite 原理浅析](https://molunerfinn.com/learn-vite/)
