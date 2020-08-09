@@ -15,6 +15,11 @@
 # 8.9
 webpack打包原理为自身模拟一个require函数，通过eval函数执行各个文件的字符串代码，如此便相当于把多个文件集成到一个js文件中（eval执行的js字符串可视为一个文件）。
 
+大致知道了webpack HMR 原理，但只是刚刚开始，现在开始vite。
+
+vite与vue搭配完成，接下来解析CSS，CSS完毕后就自己看源码总结了
+
+
 
 
 # 参考学习文章
@@ -25,3 +30,4 @@ webpack打包原理为自身模拟一个require函数，通过eval函数执行�
 5. [替代 webpack？带你了解 snowpack 原理，你还学得动么](https://www.zhihu.com/search?type=content&q=snowpack%20vite)
 6. [vite 如何做到让 vue 本地开发更快速？](https://developer.aliyun.com/article/761551)
 7. [webpack4主流程源码阅读，以及动手实现一个webpack](https://zhuanlan.zhihu.com/p/150070163)
+8. [Webpack HMR 原理解析](https://zhuanlan.zhihu.com/p/30669007)
