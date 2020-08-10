@@ -31,3 +31,4 @@ vite与vue搭配完成，接下来解析CSS，CSS完毕后就自己看源码总�
 6. [vite 如何做到让 vue 本地开发更快速？](https://developer.aliyun.com/article/761551)
 7. [webpack4主流程源码阅读，以及动手实现一个webpack](https://zhuanlan.zhihu.com/p/150070163)
 8. [Webpack HMR 原理解析](https://zhuanlan.zhihu.com/p/30669007)
+9. [vite 如何做到让 vue 本地开发更快速？](https://developer.aliyun.com/article/761551)

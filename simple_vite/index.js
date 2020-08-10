@@ -34,7 +34,6 @@ app.use(async ctx => {
         console.log(query);
         const p = path.resolve(__dirname, url.split('?')[0].slice(1));
         const { descriptor } = compilerSfc.parse(fs.readFileSync(p, 'utf-8')); // 将vue组件编译为js
-
         if (!query.type) { // vue组件编译为js
             ctx.type = 'application/javascript';
             ctx.body = `
@@ -43,13 +42,26 @@ app.use(async ctx => {
             _script.render = _render
             export default _script
             `
-        }
-        else if (query.type === 'template'){ // template解析为render
+        }else if (query.type === 'template'){ // template解析为render
             const template = descriptor.template;
             const render = compilerDom.compile(template.content, {mode: "module"}).code;
             ctx.type = 'application/javascript';
             ctx.body = rewriteImport(render);
         }
+    } else if (url.endsWith('.css')){
+        const p = path.resolve(__dirname, url.slice(1));
+        const file = fs.readFileSync(p, 'utf-8');
+        /// TODO有个bug
+        const content = `
+        const css = "${file.replace(/[\n\r]/g, '')}";
+        const link = document.createElement('style');
+        link.setAttribute('type', 'text/css');
+        document.head.appendChild(link);
+        link.innerHTML = css;
+        export default css;
+        `;
+        ctx.type = 'application/javascript';
+        ctx.body = content;
     }
 });
 
