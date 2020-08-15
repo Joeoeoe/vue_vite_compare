@@ -51,7 +51,6 @@ app.use(async ctx => {
     } else if (url.endsWith('.css')){
         const p = path.resolve(__dirname, url.slice(1));
         const file = fs.readFileSync(p, 'utf-8');
-        /// TODO有个bug
         const content = `
         const css = "${file.replace(/[\n\r]/g, '')}";
         const link = document.createElement('style');
@@ -60,7 +59,7 @@ app.use(async ctx => {
         link.innerHTML = css;
         export default css;
         `;
-        ctx.type = 'application/javascript';
+        ctx.type = 'application/javascript'; // !!!重点，否则浏览器无法把.css扩展名作为js执行
         ctx.body = content;
     }
 });
