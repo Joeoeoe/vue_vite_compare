@@ -59,7 +59,7 @@ app.use(async ctx => {
         link.innerHTML = css;
         export default css;
         `;
-        ctx.type = 'application/javascript'; // !!!重点，否则浏览器无法把.css扩展名作为js执行
+        ctx.type = 'application/javascript'; // 使得浏览器把.css扩展名作为js执行
         ctx.body = content;
     }
 });
